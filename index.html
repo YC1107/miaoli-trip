@@ -64,9 +64,10 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
 .btn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;padding:9px 12px;border-radius:12px;font-size:13px;font-weight:800;border:1px solid #d8e1d9;background:#fff;color:var(--accent-dark);transition:.18s}
 .btn:hover{transform:translateY(-1px);box-shadow:0 5px 12px rgba(57,72,62,.08)}
 .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
-.travel{display:grid;grid-template-columns:78px 1fr;gap:18px;margin:4px 0 6px}
+.travel{ /*車程時間區塊調整*/
+  display:grid;grid-template-columns:68px 1fr;gap:18px;margin:4px 0 6px} /*78pt-68pt*/
 .travel .time{padding-top:8px;color:#8a938d;font-weight:800}
-.travel-card{
+.travel-card{  /*車程時間區塊調整*/
   padding:10px 14px;
   border-radius:14px;
   background:#edf1ed;
@@ -82,9 +83,9 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
   .page{padding:12px 10px 32px}
   .hero{padding:25px 22px;border-radius:24px}
   .timeline:before{left:15px} /*時間線距離 34pt-20pt-15pt*/
-  .item,.travel{grid-template-columns:66px 1fr;gap:14px} /*時間距離 58pt-62pt-64pt-66pt*/
-  .dot{left:5px} /*時間點距離 27pt-15pt-10pt-8pt-6pt-5pt*/
-  .travel .dot{left:5px} /*時間點距離 29pt-10pt-8pt-6pt-5pt*/
+  .item,.travel{grid-template-columns:68px 1fr;gap:14px} /*時間距離 58pt-62pt-64pt-68pt*/
+  .dot{left:7px} /*時間點距離 27pt-15pt-10pt-8pt-6pt-7pt*/
+  .travel .dot{left:7px} /*時間點距離 29pt-10pt-8pt-6pt-7pt*/
   .time{font-size:13px}
   .card{padding:15px;border-radius:18px}
   .place{font-size:17px}
