@@ -186,7 +186,7 @@ const tripData =
          "address": "苗栗縣三義鄉雙潭村1-9號", 
          "maps": "https://maps.app.goo.gl/C4CZgJy5Mfc4YDZ96", 
          "intro": "https://bunnyann.tw/bunnyann276/", "drive_before": ""
-         "price": "https://joye.myboostime.app/activities/sanyi",
+         "photo": "https://www.instagram.com/reel/DcBZeVFqr8M/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ=="
      },
      {"type": "travel", "drive": "30分"
      }, 
@@ -269,7 +269,7 @@ tripData.forEach((day, idx) => {
               <div class="actions">
                 ${it.maps ? `<a class="btn primary" href="${esc(it.maps)}" target="_blank" rel="noopener">🗺 開啟 Google Maps</a>` : ""}
                 ${it.intro ? `<a class="btn" href="${esc(it.intro)}" target="_blank" rel="noopener">🔎 景點介紹</a>` : ""}
-                ${it.price ? `<a class="btn" href="${esc(it.price)}" target="_blank" rel="noopener">💰 體驗項目價目表</a>` : ""}
+                ${it.photo ? `<a class="btn" href="${esc(it.photo)}" target="_blank" rel="noopener">📷 IG 照片</a>` : ""}
               </div>
             </div>
           </article>`;
