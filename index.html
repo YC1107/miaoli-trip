@@ -59,6 +59,17 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
 .place{margin:0;font-size:19px;line-height:1.35}
 .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
 .badge{display:inline-flex;align-items:center;gap:5px;padding:5px 9px;border-radius:999px;background:#eef3ee;color:#5b6d60;font-size:12px;font-weight:700}
+.reservation-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:5px 9px;
+  border-radius:999px;
+  background:#fbe4e4;
+  color:#c43d3d;
+  font-size:12px;
+  font-weight:700;
+}
 .address{margin:12px 0 0;color:#66726d;font-size:13px;line-height:1.6}
 .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .btn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;padding:9px 12px;border-radius:12px;font-size:13px;font-weight:800;border:1px solid #d8e1d9;background:#fff;color:var(--accent-dark);transition:.18s}
@@ -182,11 +193,11 @@ const tripData =
      {"type": "travel", "drive": "30分"
      }, 
      {"type": "spot", "time": "10:30", 
-         "place": "卓也小屋渡假園區", "stay": "2H", 
+         "place": "卓也小屋渡假園區", "stay": "2H",
          "address": "苗栗縣三義鄉雙潭村1-9號", 
-         "maps": "https://maps.app.goo.gl/C4CZgJy5Mfc4YDZ96", 
-         "intro": "https://bunnyann.tw/bunnyann276/", "drive_before": "",
-         "activity": "https://joye.myboostime.app/activities/sanyi", "drive_before": ""
+         "maps": "https://maps.app.goo.gl/C4CZgJy5Mfc4YDZ96",
+         "intro": "https://bunnyann.tw/bunnyann276/",
+         "activity_url": "https://joye.myboostime.app/activities/sanyi", "reservation": "已預約11:00體驗", "drive_before": ""
      },
      {"type": "travel", "drive": "30分"
      }, 
@@ -261,6 +272,8 @@ tripData.forEach((day, idx) => {
                   <h3 class="place">${itemIcon(it.place)} ${esc(it.place)}</h3>
                   <div class="meta">
                     ${it.stay ? `<span class="badge">⏱ 預計停留 ${esc(it.stay)}</span>` : ""}
+                    ${it.reservation ? `<span class="reservation-badge">${esc(it.reservation)}</span>` : ""}
+                    
                 <div class="meta">
                     ${it.round ? `<span class="badge">集合 ${esc(it.round)}</span>` : ""}
                 </div>
@@ -269,7 +282,7 @@ tripData.forEach((day, idx) => {
               <div class="actions">
                 ${it.maps ? `<a class="btn primary" href="${esc(it.maps)}" target="_blank" rel="noopener">🗺 開啟 Google Maps</a>` : ""}
                 ${it.intro ? `<a class="btn" href="${esc(it.intro)}" target="_blank" rel="noopener">🔎 景點介紹</a>` : ""}
-               ${it.activity ? `<a class="btn" href="${esc(it.activity)}" target="_blank" rel="noopener">🎟 體驗項目價目表</a>` : ""}
+                ${it.activity_url ? `<a class="btn" href="${esc(it.activity_url)}" target="_blank" rel="noopener">🎟 體驗項目價目表</a>` : ""}
               </div>
             </div>
           </article>`;
