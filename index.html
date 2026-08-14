@@ -78,10 +78,10 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
 .footer-note{margin-top:20px;padding:15px 16px;background:rgba(255,253,248,.78);border:1px solid #e3e8e3;border-radius:16px;color:#6b756f;font-size:12px;line-height:1.7}
 .topbar{display:flex;justify-content:flex-end;margin:10px 0}
 .print-btn{border:0;background:transparent;color:#6a766e;font-size:12px;cursor:pointer}
-@media(max-width:680px){
+@media(max-width:680px){ /*手機調整*/
   .page{padding:12px 10px 32px}
   .hero{padding:25px 22px;border-radius:24px}
-  .timeline:before{left:34px}
+  .timeline:before{left:20px} /*時間線距離 34pt*/
   .item,.travel{grid-template-columns:58px 1fr;gap:14px}
   .dot{left:27px}
   .travel .dot{left:29px}
@@ -89,7 +89,7 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
   .card{padding:15px;border-radius:18px}
   .place{font-size:17px}
 }
-@media print{
+@media print{ /*手機調整*/
   body{background:#fff}
   .page{max-width:none;padding:0}
   .hero{box-shadow:none}
