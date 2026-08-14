@@ -60,17 +60,7 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
 .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
 .badge{display:inline-flex;align-items:center;gap:5px;padding:5px 9px;border-radius:999px;background:#eef3ee;color:#5b6d60;font-size:12px;font-weight:700}
 .address{margin:12px 0 0;color:#66726d;font-size:13px;line-height:1.6}
-.booking-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:5px;
-  padding:5px 9px;
-  border-radius:999px;
-  background:#fff0f0;
-  color:#c94b4b;
-  font-size:12px;
-  font-weight:700;
-}
+.booking-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 9px;border-radius:999px;background:#fff0f0;color:#c94b4b;font-size:12px;font-weight:700}
 .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .btn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;padding:9px 12px;border-radius:12px;font-size:13px;font-weight:800;border:1px solid #d8e1d9;background:#fff;color:var(--accent-dark);transition:.18s}
 .btn:hover{transform:translateY(-1px);box-shadow:0 5px 12px rgba(57,72,62,.08)}
@@ -272,7 +262,7 @@ tripData.forEach((day, idx) => {
                   <h3 class="place">${itemIcon(it.place)} ${esc(it.place)}</h3>
                   <div class="meta">
                     ${it.stay ? `<span class="badge">⏱ 預計停留 ${esc(it.stay)}</span>` : ""}
-                    ${it.place === "卓也小屋渡假園區" ? `<div class="booking-note">✓ 已預約 11:00 體驗</div>` : ""}
+                    ${it.place === "卓也小屋渡假園區" ? `<div class="booking-note">已預約 11:00 體驗</div>` : ""}
                 <div class="meta">
                     ${it.round ? `<span class="badge">集合 ${esc(it.round)}</span>` : ""}
                 </div>
