@@ -275,11 +275,19 @@ tripData.forEach((day, idx) => {
   panel.className = "day-panel" + (idx === 0 ? " active" : "");
   panel.id = `panel-${idx}`;
   panel.innerHTML = `
-    <div class="day-heading">
-      <div><h2>${esc(day.title)}</h2></div>
-      <p>${day.items.filter(x => x.type === "spot").length} 個主要停留點</p>
+   <div class="day-heading">
+    <div><h2>${esc(day.title)}</h2></div>
+    <p>${day.items.filter(x => x.type === "spot").length} 個主要停留點</p>
+  </div>
+
+  <div class="dress-code">
+    <div class="dress-code-title">DRESS CODE</div>
+    <div class="dress-code-content">
+      <div class="dress-code-color">${esc(day.dressCode?.color || "")}</div>
+      <div class="dress-code-description">${esc(day.dressCode?.description || "")}</div>
     </div>
-    <div class="timeline">
+  </div>
+  <div class="timeline">
       ${day.items.map((it) => {
         if (it.type === "travel") {
           return `
