@@ -49,6 +49,12 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
 .day-heading{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:22px 4px 14px}
 .day-heading h2{margin:0;font-size:25px}
 .day-heading p{margin:0;color:var(--muted);font-size:13px}
+/*DRESS CODE區域*/
+.dress-code{margin:0 4px 20px;padding:16px 18px;background:rgba(255,253,248,.92);border:1px solid #e3e8e3;border-radius:20px;box-shadow:0 8px 28px rgba(57,72,62,.07);}
+.dress-code-title{margin:0 0 8px;font-size:12px;letter-spacing:.16em;font-weight:900;color:var(--accent-dark);}
+.dress-code-content{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.dress-code-color{font-size:17px;font-weight:900;}
+.dress-code-description{Color:#68736b;font-size:13px;}
 .timeline{position:relative}
 .timeline:before{content:"";position:absolute;left:47px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--line),#cbd7cc,var(--line))}
 .item{position:relative;display:grid;grid-template-columns:115px 1fr;gap:18px;margin:14px 0}
@@ -91,6 +97,8 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
 .topbar{display:flex;justify-content:flex-end;margin:10px 0}
 .print-btn{border:0;background:transparent;color:#6a766e;font-size:12px;cursor:pointer}
 @media(max-width:680px){ /*手機調整*/
+  .dress-code{margin:0 2px 18px;padding:14px 15px;border-radius:18px;} /*dress-code*/
+  .dress-code-color{font-size:16px;} /*dress-code*/
   .page{padding:12px 10px 32px}
   .hero{padding:25px 22px;border-radius:24px}
   .timeline:before{left:15px} /*時間線距離 34pt-20pt-15pt*/
@@ -139,6 +147,11 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
 <script>
 const tripData = 
 [{"title": "12/19 (六)", 
+  "dressCode": {
+      "title": "DRESS CODE",
+      "color": "🤎 大地色系",
+      "description": "舒適、保暖，適合戶外活動"
+    },
    "items":
    [
      {"type": "spot", "time": "10:00",
@@ -192,6 +205,11 @@ const tripData =
          "drive_before": ""}]
      },
      {"title": "12/20 (日)",
+      "dressCode": {
+      "title": "DRESS CODE",
+      "color": "🤍 米白＋綠色",
+      "description": "休閒舒適，適合拍照"
+    },
        "items": [
      {"type": "spot", "time": "",
          "place": "六沐森民宿","round": "出發",
