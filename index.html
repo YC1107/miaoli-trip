@@ -124,6 +124,14 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
   .day-panel + .day-panel{page-break-before:always}
   .card{box-shadow:none}
 }
+  /* 景點圖片 */
+.spot-image {margin-top: 14px;width: 100%;overflow: hidden;border-radius: 14px;
+            }
+.spot-image img {display: block;width: 100%;height: 220px;object-fit: cover;
+                }
+/* 手機版 */
+@media (max-width: 680px) {.spot-image img {height: 180px;}
+}
 </style>
 </head>
 <body>
@@ -204,7 +212,8 @@ const tripData =
          "stay": "-", "address": "苗栗縣公館鄉仁安村仁安99之21號",
          "maps": "https://maps.app.goo.gl/1cXMPKKpyzNydr1J7", 
          "intro": "", 
-         "drive_before": ""}]
+         "drive_before": ""
+         "image": "images/https://lurl.cc/trHr7",}]
      },
      {"title": "12/20 (日)",
       "dressCode": {
@@ -217,7 +226,8 @@ const tripData =
          "place": "六沐森民宿","round": "出發",
          "address": "苗栗縣公館鄉仁安村仁安99之21號", 
          "maps": "https://maps.app.goo.gl/1cXMPKKpyzNydr1J7",
-         "intro": "",
+         "intro": ""
+         "image": "images/liumusen.jpg",,
      },
      {"type": "travel", "drive": "30分"
      }, 
@@ -316,6 +326,9 @@ tripData.forEach((day, idx) => {
                 </div>
               </div>
               ${it.address ? `<div class="address">📍 ${esc(it.address)}</div>` : ""}
+              ${it.image ? `<div class="spot-image">
+              <img src="${esc(it.image)}" alt="${esc(it.place)}" loading="lazy">
+          </div>` : ""}
                ${it.cars ? `<div class="car-list">${it.cars.map(car => `
                  <div class="car-group">
                    <div class="car-title">🚗 ${esc(car.name)}</div>
