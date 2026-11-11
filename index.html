@@ -124,14 +124,6 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
   .day-panel + .day-panel{page-break-before:always}
   .card{box-shadow:none}
 }
-  /* 景點圖片 */
-.spot-image {margin-top: 14px;width: 100%;overflow: hidden;border-radius: 14px;
-            }
-.spot-image img {display: block;width: 100%;height: 220px;object-fit: cover;
-                }
-/* 手機版 */
-@media (max-width: 680px) {.spot-image img {height: 180px;}
-}
 </style>
 </head>
 <body>
@@ -172,22 +164,16 @@ const tripData =
          "place": "各車上車地點", "round": "出發",
          "address": "各車自行決定上車地點", 
          "cars": [
-           {"name": "第一台車",
-            "driver": "待填寫",
-            "passengers": ["待填寫", "待填寫"]},
-           {"name": "第二台車",
-            "driver": "待填寫",
-            "passengers": ["待填寫", "待填寫"]},
-           {"name": "第三台車",
-            "driver": "待填寫",
-            "passengers": ["待填寫", "待填寫"],
+           {"name":"第一台車","driver":"待填寫","passengers":["待填寫"]},
+           {"name":"第二台車","driver":"待填寫","passengers":["待填寫"]},
+           {"name":"第三台車","driver":"待填寫","passengers":["待填寫"]}
          ],
          "intro": ""
      }, 
-     {"type": "travel", "drive": "一小時"
+     {"type": "travel", "drive": "40分"
      },
-     {"type": "spot", "time": "10:00", 
-         "place": "我家草莓園", "stay": "1H",
+     {"type": "spot", "time": "xx:xx", 
+         "place": "我家草莓園", "stay": "?H",
          "address": "苗栗縣大湖鄉富興村7鄰號1-1號",
          "maps": "https://maps.app.goo.gl/DuuyDVfZRZVxrXJh6",
          "intro": "https://www.threads.com/share/LlBnWTTui/", 
@@ -195,8 +181,8 @@ const tripData =
      },
      {"type": "travel", "drive": "5分"
      }, 
-     {"type": "spot", "time": "11:00", 
-         "place": "七里香甕仔雞-大湖店", "stay": "1.5H",
+     {"type": "spot", "time": "xx:xx", 
+         "place": "七里香甕仔雞-大湖店", "stay": "2H",
          "address": "苗栗縣大湖鄉富興村33-66號",
          "maps": "https://maps.app.goo.gl/5L6NtNw2MfP2cRZK7",
          "intro": "https://www.popdaily.com.tw/forum/food/1585780", 
@@ -204,27 +190,34 @@ const tripData =
      },
      {"type": "travel", "drive": "15分"
      }, 
-     {"type": "spot", "time": "13:15", 
-         "place": "公館中義村落羽松秘境", "stay": "45M", 
+     {"type": "spot", "time": "xx:xx", 
+         "place": "公館中義村落羽松秘境", "stay": "1.5-2H", 
          "address": "苗栗縣公館鄉中義村44號之1號", 
          "maps": "https://maps.app.goo.gl/PiC1WTXU9o86hrQ49", 
          "intro": "https://golovetraveling.com/siswater-bald-cypress/", 
          "drive_before": ""
      },
-     {"type": "travel", "drive": "15分"
+     {"type": "travel", "drive": "5分"
+     },
+     {"type": "spot", "time": "xx:xx",
+          "place": "全聯公館大同店", "stay": "40分",
+          "address": "苗栗縣公館鄉館中村大同路201號",
+          "maps": "https://maps.app.goo.gl/V8kFeYJ9Us1rqte26", 
+         "intro": "", "drive_before": ""
+     }, 
+     {"type": "travel", "drive": "5分"
      },
      {"type": "spot", "time": "15:00", 
          "place": "六沐森民宿",
          "stay": "-", "address": "苗栗縣公館鄉仁安村仁安99之21號",
          "maps": "https://maps.app.goo.gl/1cXMPKKpyzNydr1J7", 
          "intro": "", 
-         "drive_before": ""
-         "image": "images/https://lurl.cc/trHr7",}]
+         "drive_before": ""}]
      },
      {"title": "12/20 (日)",
       "dressCode": {
       "title": "DRESS CODE",
-      "color": "❤️🧡💛💚隨意 自由展現 整個苗栗都是我們的伸展台💙💜🖤🤍",
+      "color": "❤️🧡💛💚待討論決定💙💜🖤🤍",
       "description": " "
     },
        "items": [
@@ -232,8 +225,7 @@ const tripData =
          "place": "六沐森民宿","round": "出發",
          "address": "苗栗縣公館鄉仁安村仁安99之21號", 
          "maps": "https://maps.app.goo.gl/1cXMPKKpyzNydr1J7",
-         "intro": ""
-         "image": "images/liumusen.jpg",,
+         "intro": "",
      },
      {"type": "travel", "drive": "30分"
      }, 
@@ -332,12 +324,10 @@ tripData.forEach((day, idx) => {
                 </div>
               </div>
               ${it.address ? `<div class="address">📍 ${esc(it.address)}</div>` : ""}
-              ${it.image ? `<div class="spot-image">
-              <img src="${esc(it.image)}" alt="${esc(it.place)}" loading="lazy">
-          </div>` : ""}
                ${it.cars ? `<div class="car-list">${it.cars.map(car => `
                  <div class="car-group">
                    <div class="car-title">🚗 ${esc(car.name)}</div>
+                   <div class="car-person"><strong>司機：</strong>${esc(car.driver)}</div>
                    <div class="car-person"><strong>乘客：</strong>${(car.passengers || []).map(esc).join("、") || "待填寫"}</div>
                  </div>`).join("")}</div>` : ""}
                <div class="actions">
