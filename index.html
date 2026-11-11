@@ -93,11 +93,17 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
   border:1px dashed #cfd9d1;
   width:100%;
 }
-.footer-note{margin-top:20px;padding:15px 16px;background:rgba(255,253,248,.78);border:1px solid #e3e8e3;border-radius:16px;color:#6b756f;font-size:12px;line-height:1.7}
+ .car-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+ .car-group{background:#f2f4ef;border:1px solid #dfe6df;border-radius:14px;padding:12px;min-width:0}
+ .car-title{font-size:14px;font-weight:900;color:var(--accent);margin-bottom:9px}
+ .car-person{font-size:13px;line-height:1.8;overflow-wrap:anywhere}
+ .car-person strong{color:var(--accent-dark)}
+ .footer-note{margin-top:20px;padding:15px 16px;background:rgba(255,253,248,.78);border:1px solid #e3e8e3;border-radius:16px;color:#6b756f;font-size:12px;line-height:1.7}
 .topbar{display:flex;justify-content:flex-end;margin:10px 0}
 .print-btn{border:0;background:transparent;color:#6a766e;font-size:12px;cursor:pointer}
 @media(max-width:680px){ /*手機調整*/
-  .dress-code{margin:0 2px 18px;padding:14px 15px;border-radius:18px;} /*dress-code*/
+   .car-list{grid-template-columns:1fr}
+   .dress-code{margin:0 2px 18px;padding:14px 15px;border-radius:18px;} /*dress-code*/
   .dress-code-color{font-size:16px;} /*dress-code*/
   .page{padding:12px 10px 32px}
   .hero{padding:25px 22px;border-radius:24px}
@@ -149,15 +155,19 @@ const tripData =
 [{"title": "12/19 (六)", 
   "dressCode": {
       "title": "DRESS CODE",
-      "color": "❤️🧡💛💚待討論決定💙💜🖤🤍",
+      "color": "白天/上卡其 下巧克力  晚上/今朝有酒團服",
       "description": " "
     },
    "items":
    [
-     {"type": "spot", "time": "10:00",
-         "place": "赫里翁", "round": "出發",
-         "address": "臺中市西屯區環中路二段1577號", 
-         "maps": "https://maps.app.goo.gl/ej8NsKrKx2Sm7Py79",
+     {"type": "spot", "time": "--:--",
+         "place": "各車上車地點", "round": "出發",
+         "address": "各車自行決定上車地點", 
+         "cars": [
+           {"name":"第一台車","driver":"待填寫","passengers":["待填寫"]},
+           {"name":"第二台車","driver":"待填寫","passengers":["待填寫"]},
+           {"name":"第三台車","driver":"待填寫","passengers":["待填寫"]}
+         ],
          "intro": ""
      }, 
      {"type": "travel", "drive": "40分"
@@ -314,7 +324,12 @@ tripData.forEach((day, idx) => {
                 </div>
               </div>
               ${it.address ? `<div class="address">📍 ${esc(it.address)}</div>` : ""}
-              <div class="actions">
+               ${it.cars ? `<div class="car-list">${it.cars.map(car => `
+                 <div class="car-group">
+                   <div class="car-title">🚗 ${esc(car.name)}</div>
+                   <div class="car-person"><strong>乘客：</strong>${(car.passengers || []).map(esc).join("、") || "待填寫"}</div>
+                 </div>`).join("")}</div>` : ""}
+               <div class="actions">
                 ${it.maps ? `<a class="btn primary" href="${esc(it.maps)}" target="_blank" rel="noopener">🗺 開啟 Google Maps</a>` : ""}
                 ${it.intro ? `<a class="btn" href="${esc(it.intro)}" target="_blank" rel="noopener">🔎 景點介紹</a>` : ""}
                 ${it.activity_url ? `<a class="btn" href="${esc(it.activity_url)}" target="_blank" rel="noopener">🎟 體驗項目價目表</a>` : ""}
