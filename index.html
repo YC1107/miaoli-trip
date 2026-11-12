@@ -138,7 +138,6 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
     height: auto;
     border-radius: 14px;
 }
-}
 </style>
 </head>
 <body>
@@ -170,8 +169,7 @@ const tripData = /* DATA_START */
 [{"title": "12/19 (六)", 
   "dressCode": {
       "title": "DRESS CODE",
-      "color": "白天/上卡其 下巧克力",
-      "color": "晚上/今朝有酒團服",
+      "color": "白天/上卡其 下巧克力｜晚上/今朝有酒團服",
       "description": " "
     },
    "items":
@@ -218,10 +216,11 @@ const tripData = /* DATA_START */
        "stay": "-",
        "address": "苗栗縣公館鄉仁安村仁安99之21號",
        "maps": "https://maps.app.goo.gl/1cXMPKKpyzNydr1J7",
-       "image": "https://github.com/YC1107/miaoli-trip/blob/main/images/S__364306454.jpg",
+       "image": "images/S__364306454.jpg",
        "intro": "",
        "drive_before": ""
-     },
+     }]
+    },
      {"title": "12/20 (日)",
       "dressCode": {
       "title": "DRESS CODE",
@@ -260,7 +259,7 @@ const tripData = /* DATA_START */
          "maps": "https://maps.app.goo.gl/ej8NsKrKx2Sm7Py79", 
          "intro": "", "drive_before": ""}]
      }
-   ],
+   ];
 
 /* DATA_END */
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);
@@ -341,8 +340,6 @@ ${it.image ? `
              loading="lazy">
     </div>
 ` : ""}
-<div class="actions">
-    ${it.maps ? `<a class="btn primary" href="${esc(it.maps)}" target="_blank" rel="noopener">🗺 開啟 Google Maps</a>` : ""}
                ${it.cars ? `<div class="car-list">${it.cars.map(car => `
                  <div class="car-group">
                    <div class="car-title">🚗 ${esc(car.name)}</div>
