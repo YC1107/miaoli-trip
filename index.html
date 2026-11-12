@@ -125,6 +125,27 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
   .card{box-shadow:none}
 }
 .name-input{display:block;width:100%;min-width:0;margin:4px 0 8px;padding:9px;border:1px solid #cfd9d1;border-radius:8px;background:#fffdf8;color:var(--ink);font:inherit}.car-person{display:block}.menu-image{margin:18px 0 0}.menu-image figcaption{font-weight:800;font-size:14px;margin-bottom:10px}.menu-image img{display:block;width:100%;height:auto;border-radius:12px}.topbar{gap:12px;flex-wrap:wrap}
+/* 景點圖片 */
+.spot-image {
+    margin-top: 14px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+.spot-image img {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+/* 手機版 */
+@media (max-width: 680px) {
+    .spot-image img {
+        height: 180px;
+    }
+}
 </style>
 </head>
 <body>
@@ -202,7 +223,8 @@ const tripData = /* DATA_START */
          "stay": "-", "address": "苗栗縣公館鄉仁安村仁安99之21號",
          "maps": "https://maps.app.goo.gl/1cXMPKKpyzNydr1J7", 
          "intro": "", 
-         "drive_before": ""}]
+         "drive_before": ""
+         "image": "images/S__364306454.jpg",}]
      },
      {"title": "12/20 (日)",
       "dressCode": {
@@ -315,6 +337,11 @@ tripData.forEach((day, idx) => {
                 </div>
               </div>
               ${it.address ? `<div class="address">📍 ${esc(it.address)}</div>` : ""}
+              ${it.image ? `
+              <div class="spot-image">
+               <img src="${esc(it.image)}" alt="${esc(it.place)}" loading="lazy">
+                </div>
+                 ` : ""}
                ${it.cars ? `<div class="car-list">${it.cars.map(car => `
                  <div class="car-group">
                    <div class="car-title">🚗 ${esc(car.name)}</div>
