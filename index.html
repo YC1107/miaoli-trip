@@ -53,7 +53,12 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
 .dress-code{margin:0 4px 20px;padding:16px 18px;background:rgba(255,253,248,.92);border:1px solid #e3e8e3;border-radius:20px;box-shadow:0 8px 28px rgba(57,72,62,.07);}
 .dress-code-title{margin:0 0 8px;font-size:12px;letter-spacing:.16em;font-weight:900;color:var(--accent-dark);}
 .dress-code-content{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-.dress-code-color{font-size:17px;font-weight:900;}
+.dress-code-color {
+    font-size: 17px;
+    font-weight: 900;
+    white-space: pre-line;
+    line-height: 1.9;
+}
 .dress-code-description{Color:#68736b;font-size:13px;}
 .timeline{position:relative}
 .timeline:before{content:"";position:absolute;left:47px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--line),#cbd7cc,var(--line))}
@@ -247,7 +252,7 @@ const tripData = /* DATA_START */
 [{"title": "12/19 (六)", 
   "dressCode": {
       "title": "DRESS CODE",
-      "color": "白天/卡其OR巧克力佔33%｜晚上/今朝有酒團服",
+      "color": "白天/卡其OR巧克力佔33%\n晚上/今朝有酒團服",
       "description": " "
     },
    "items":
