@@ -145,12 +145,26 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
     margin-bottom: 10px;
     line-height: 1.6;
 }
+
+/* 今朝有酒橫幅：完整顯示、不裁切 */
+.hero { padding:0; background:none; overflow:hidden; border-radius:26px; }
+.hero::before, .hero::after { display:none; }
+.hero-banner { display:block; width:100%; height:auto; }
+.hero-info { margin-top:14px; padding:22px 26px; background:linear-gradient(135deg,#62776a,#b79b70); border-radius:22px; color:white; box-shadow:var(--shadow); }
+.hero-info h1 { font-size:clamp(24px,4vw,36px); margin:0 0 8px; }
+.hero-info .hero-row { margin-top:16px; }
+@media (max-width:680px) {
+  .hero { border-radius:16px; }
+  .hero-info { padding:18px; border-radius:16px; }
+}
 </style>
 </head>
 <body>
 <div class="page">
   <section class="hero">
-    <div class="eyebrow">MINI TRIP · MIAOLI</div>
+    <img src="images/jinzhao-banner.png" alt="今朝有酒 JINZHAO CLUB 露營主題" class="hero-banner">
+  </section>
+  <section class="hero-info">
     <h1>苗栗兩天一夜露營</h1>
     <p class="subtitle">12/19(六) - 12/20(日)｜兩天一夜・自駕行程</p>
     <div class="hero-row">
