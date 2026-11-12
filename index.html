@@ -164,6 +164,64 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
 @media (max-width:680px) {
   .hero { min-height:240px; padding:25px 20px; border-radius:22px; background-position:center; }
 }
+  /* 晚餐圖片縮圖 */
+.spot-image .zoom-image {
+    display: block;
+    width: 180px;
+    max-width: 100%;
+    height: 130px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+    cursor: zoom-in;
+    transition: transform 0.2s;
+}
+
+.spot-image .zoom-image:hover {
+    transform: scale(1.03);
+}
+
+.image-hint {
+    margin-top: 7px;
+    font-size: 12px;
+    color: #718078;
+}
+
+/* 圖片放大視窗 */
+.image-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.88);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.image-modal.active {
+    display: flex;
+}
+
+.image-modal img {
+    max-width: 95vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.image-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 34px;
+    cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -361,9 +419,18 @@ ${it.image ? `
                 ${esc(it.image_text)}
             </div>
         ` : ""}
-        <img src="${esc(it.image)}"
-             alt="${esc(it.place)}"
-             loading="lazy">
+
+        <img
+            src="${esc(it.image)}"
+            alt="${esc(it.place)}"
+            class="zoom-image"
+            loading="lazy"
+            onclick="openImage(this.src)"
+        >
+
+        <div class="image-hint">
+            🔍 點擊圖片放大
+        </div>
     </div>
 ` : ""}
                ${it.cars ? `<div class="car-list">${it.cars.map(car => `
@@ -381,6 +448,39 @@ ${it.image ? `
       }).join("")}
     </div>`;
   panels.appendChild(panel);
+});
+</script>
+  <div class="image-modal" id="imageModal"
+     onclick="closeImage()">
+
+    <button class="image-close"
+            onclick="closeImage()"
+            aria-label="關閉圖片">
+        &times;
+    </button>
+
+    <img id="modalImage"
+         src=""
+         alt="放大圖片"
+         onclick="event.stopPropagation()">
+</div>
+
+<script>
+function openImage(src) {
+    document.getElementById("modalImage").src = src;
+    document.getElementById("imageModal")
+        .classList.add("active");
+}
+
+function closeImage() {
+    document.getElementById("imageModal")
+        .classList.remove("active");
+}
+
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") {
+        closeImage();
+    }
 });
 </script>
 </body>
