@@ -333,13 +333,15 @@ tripData.forEach((day, idx) => {
                 </div>
               </div>
               ${it.address ? `<div class="address">📍 ${esc(it.address)}</div>` : ""}
-              ${it.image ? `
+${it.image ? `
     <div class="spot-image">
         <img src="${esc(it.image)}"
              alt="${esc(it.place)}"
              loading="lazy">
     </div>
 ` : ""}
+<div class="actions">
+    ${it.maps ? `<a class="btn primary" href="${esc(it.maps)}" target="_blank" rel="noopener">🗺 開啟 Google Maps</a>` : ""}
                ${it.cars ? `<div class="car-list">${it.cars.map(car => `
                  <div class="car-group">
                    <div class="car-title">🚗 ${esc(car.name)}</div>
