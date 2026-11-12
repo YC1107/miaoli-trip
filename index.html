@@ -264,8 +264,7 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
 <body>
 <div class="page">
   <section class="hero">
-    <div class="hero-row">
-    </div>
+    <div class="hero-row"></div>
   </section>
 
   <div class="topbar"><button class="print-btn" onclick="window.print()">列印／另存 PDF</button></div>
@@ -362,8 +361,8 @@ const tripData = /* DATA_START */
          "image_text": "產品圖     價目表",
          "images": [
              "images/Price List.jpg",
-             "image": "images/Product.jpg"
-           ,
+             "images/Product.jpg"
+         ],
          "reservation": "已預約11:00體驗",
          "drive_before": ""
      },
@@ -457,7 +456,7 @@ tripData.forEach((day, idx) => {
                 </div>
               </div>
               ${it.address ? `<div class="address">📍 ${esc(it.address)}</div>` : ""}
-${it.images?.length ? `
+${(Array.isArray(it.images) ? it.images : (it.image ? [it.image] : [])).length ? `
     <div class="spot-image">
         ${it.image_text ? `
             <div class="spot-image-title">
@@ -466,13 +465,13 @@ ${it.images?.length ? `
         ` : ""}
 
         <div class="spot-image-grid">
-            ${it.images.map(img => `
+            ${(Array.isArray(it.images) ? it.images : [it.image]).map(img => `
                 <img
                     src="${esc(img)}"
                     class="zoom-image"
                     alt="${esc(it.place)}"
                     loading="lazy"
-                    onclick="openImage(this.src)"
+                    onclick="openImage(this.src)" tabindex="0" role="button" aria-label="放大圖片" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openImage(this.src)}"
                 >
             `).join("")}
         </div>
@@ -502,7 +501,7 @@ ${it.images?.length ? `
   <div class="image-modal" id="imageModal"
      onclick="closeImage()">
 
-    <button class="image-close"
+    <button type="button" class="image-close"
             onclick="closeImage()"
             aria-label="關閉圖片">
         &times;
@@ -519,11 +518,13 @@ function openImage(src) {
     document.getElementById("modalImage").src = src;
     document.getElementById("imageModal")
         .classList.add("active");
+    document.body.style.overflow = "hidden";
 }
 
 function closeImage() {
     document.getElementById("imageModal")
         .classList.remove("active");
+    document.body.style.overflow = "";
 }
 
 document.addEventListener("keydown", function(e) {
