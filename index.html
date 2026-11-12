@@ -227,6 +227,38 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
     font-size: 34px;
     cursor: pointer;
 }
+  /* 兩張圖片並排 */
+.spot-image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    max-width: 380px;
+}
+
+/* 小圖片 */
+.spot-image-grid .zoom-image {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: zoom-in;
+    transition: transform 0.2s;
+}
+
+.spot-image-grid .zoom-image:hover {
+    transform: scale(1.03);
+}
+
+/* 手機版 */
+@media (max-width: 680px) {
+    .spot-image-grid {
+        gap: 8px;
+    }
+
+    .spot-image-grid .zoom-image {
+        height: 110px;
+    }
+}
 </style>
 </head>
 <body>
@@ -327,10 +359,11 @@ const tripData = /* DATA_START */
          "address": "苗栗縣三義鄉雙潭村1-9號", 
          "maps": "https://maps.app.goo.gl/C4CZgJy5Mfc4YDZ96",
          "intro": "https://bunnyann.tw/bunnyann276/",
-         "image_text": "產品圖",
-         "image": "images/Price List.jpg",
-         "image_text": "價目表",
-         "image": "images/Product.jpg",
+         "image_text": "產品圖     價目表",
+         "images": [
+             "images/Price List.jpg",
+             "image": "images/Product.jpg"
+           ,
          "reservation": "已預約11:00體驗",
          "drive_before": ""
      },
@@ -424,7 +457,7 @@ tripData.forEach((day, idx) => {
                 </div>
               </div>
               ${it.address ? `<div class="address">📍 ${esc(it.address)}</div>` : ""}
-${it.image ? `
+${it.images?.length ? `
     <div class="spot-image">
         ${it.image_text ? `
             <div class="spot-image-title">
@@ -432,13 +465,17 @@ ${it.image ? `
             </div>
         ` : ""}
 
-        <img
-            src="${esc(it.image)}"
-            alt="${esc(it.place)}"
-            class="zoom-image"
-            loading="lazy"
-            onclick="openImage(this.src)"
-        >
+        <div class="spot-image-grid">
+            ${it.images.map(img => `
+                <img
+                    src="${esc(img)}"
+                    class="zoom-image"
+                    alt="${esc(it.place)}"
+                    loading="lazy"
+                    onclick="openImage(this.src)"
+                >
+            `).join("")}
+        </div>
 
         <div class="image-hint">
             🔍 點擊圖片放大
