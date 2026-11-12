@@ -138,6 +138,13 @@ h1{position:relative;z-index:1;margin:10px 0 6px;font-size:clamp(30px,6vw,52px);
     height: auto;
     border-radius: 14px;
 }
+  .spot-image-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #3F5944;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
 </style>
 </head>
 <body>
@@ -216,6 +223,7 @@ const tripData = /* DATA_START */
        "stay": "-",
        "address": "苗栗縣公館鄉仁安村仁安99之21號",
        "maps": "https://maps.app.goo.gl/1cXMPKKpyzNydr1J7",
+       "image_text": "晚餐品項",
        "image": "images/S__364306454.jpg",
        "intro": "",
        "drive_before": ""
@@ -335,6 +343,11 @@ tripData.forEach((day, idx) => {
               ${it.address ? `<div class="address">📍 ${esc(it.address)}</div>` : ""}
 ${it.image ? `
     <div class="spot-image">
+        ${it.image_text ? `
+            <div class="spot-image-title">
+                ${esc(it.image_text)}
+            </div>
+        ` : ""}
         <img src="${esc(it.image)}"
              alt="${esc(it.place)}"
              loading="lazy">
